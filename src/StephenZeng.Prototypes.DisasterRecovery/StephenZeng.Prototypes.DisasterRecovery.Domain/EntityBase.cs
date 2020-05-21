@@ -2,7 +2,8 @@
 
 namespace StephenZeng.Prototypes.DisasterRecovery.Domain
 {
-    public class Class1
+    public abstract class EntityBase
     {
+        public Guid Id { get; set; }
     }
 }

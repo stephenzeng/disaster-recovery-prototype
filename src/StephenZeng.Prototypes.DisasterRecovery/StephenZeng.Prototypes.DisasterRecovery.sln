@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StephenZeng.Prototypes.Disa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StephenZeng.Prototypes.DisasterRecovery.Dal", "StephenZeng.Prototypes.DisasterRecovery.Dal\StephenZeng.Prototypes.DisasterRecovery.Dal.csproj", "{A6547305-53E0-4569-936C-6B5E43636EE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StephenZeng.Prototypes.DisasterRecovery.Common", "StephenZeng.Prototypes.DisasterRecovery.Common\StephenZeng.Prototypes.DisasterRecovery.Common.csproj", "{B78A0660-A80F-4DF2-B366-A1D3A6A93D86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A6547305-53E0-4569-936C-6B5E43636EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6547305-53E0-4569-936C-6B5E43636EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6547305-53E0-4569-936C-6B5E43636EE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B78A0660-A80F-4DF2-B366-A1D3A6A93D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B78A0660-A80F-4DF2-B366-A1D3A6A93D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B78A0660-A80F-4DF2-B366-A1D3A6A93D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B78A0660-A80F-4DF2-B366-A1D3A6A93D86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
