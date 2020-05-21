@@ -1,14 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using StephenZeng.Prototypes.DisasterRecovery.Common;
+using StephenZeng.Prototypes.DisasterRecovery.Dal;
 
 namespace StephenZeng.Prototypes.DisasterRecovery.Api
 {
@@ -24,7 +22,11 @@ namespace StephenZeng.Prototypes.DisasterRecovery.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            ConfigureDbContext(services);
+
+            services.AddHttpClient();
+            services.AddControllers()
+                .AddNewtonsoftJson(o => o.SerializerSettings.Converters.Add(new EnumStringJsonConverter()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +37,7 @@ namespace StephenZeng.Prototypes.DisasterRecovery.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -43,6 +46,20 @@ namespace StephenZeng.Prototypes.DisasterRecovery.Api
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void ConfigureDbContext(IServiceCollection services)
+        {
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDbContext>(o =>
+            {
+                o.UseSqlServer(connectionString);
+                o.EnableSensitiveDataLogging(true);
+            });
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseSqlServer(connectionString);
+            services.AddSingleton<Func<ApplicationDbContext>>(p => () => new ApplicationDbContext(optionsBuilder.Options));
         }
     }
 }
